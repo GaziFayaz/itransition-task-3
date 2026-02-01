@@ -20,7 +20,7 @@ namespace task_3.Controllers
 			{
 				return Content("NaN", "text/plain");
 			}
-			Console.WriteLine(x, y);
+			Console.WriteLine("x = {0}, y = {1}",  x, y);
 
 			if (numX <= 0 || numY <= 0)
 			{
@@ -28,6 +28,7 @@ namespace task_3.Controllers
 			}
 
 			ulong lcm = CalculateLCM(numX, numY);
+			Console.WriteLine("LCM = {0}", lcm);
 			return Content(lcm.ToString(), "text/plain");
 		}
 
