@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: lcm-service
+    runtime: docker
+    plan: free
+    buildCommand: dotnet publish -c Release -o out "task 3/task 3.csproj"
+    startCommand: dotnet "out/task 3.dll"
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://0.0.0.0:$PORT
