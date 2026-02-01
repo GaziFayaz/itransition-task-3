@@ -16,7 +16,7 @@ namespace task_3.Controllers
 				return Content("NaN", "text/plain");
 			}
 
-			if (!long.TryParse(x, out long numX) || !long.TryParse(y, out long numY))
+			if (!ulong.TryParse(x, out ulong numX) || !ulong.TryParse(y, out ulong numY))
 			{
 				return Content("NaN", "text/plain");
 			}
@@ -27,20 +27,20 @@ namespace task_3.Controllers
 				return Content("NaN", "text/plain");
 			}
 
-			long lcm = CalculateLCM(numX, numY);
+			ulong lcm = CalculateLCM(numX, numY);
 			return Content(lcm.ToString(), "text/plain");
 		}
 
-		private long CalculateLCM(long a, long b)
+		private ulong CalculateLCM(ulong a, ulong b)
 		{
 			return (a * b) / CalculateGCD(a, b);
 		}
 
-		private long CalculateGCD(long a, long b)
+		private ulong CalculateGCD(ulong a, ulong b)
 		{
 			while (b != 0)
 			{
-				long temp = b;
+				ulong temp = b;
 				b = a % b;
 				a = temp;
 			}
