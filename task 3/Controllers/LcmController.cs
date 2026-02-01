@@ -10,7 +10,7 @@ namespace task_3.Controllers
 		[Produces("text/plain")]
 		public IActionResult CalculateLcm([FromQuery] string? x, [FromQuery] string? y)
 		{
-			Console.WriteLine(x, y);
+
 			if (string.IsNullOrEmpty(x) || string.IsNullOrEmpty(y))
 			{
 				return Content("NaN", "text/plain");
@@ -20,6 +20,7 @@ namespace task_3.Controllers
 			{
 				return Content("NaN", "text/plain");
 			}
+			Console.WriteLine(x, y);
 
 			if (numX <= 0 || numY <= 0)
 			{
@@ -37,12 +38,12 @@ namespace task_3.Controllers
 
 		private long CalculateGCD(long a, long b)
 		{
-            while (b != 0)
+			while (b != 0)
 			{
 				long temp = b;
 				b = a % b;
 				a = temp;
-            }
+			}
 			return a;
 		}
 	}
