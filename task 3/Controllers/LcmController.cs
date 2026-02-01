@@ -10,6 +10,7 @@ namespace task_3.Controllers
 		[Produces("text/plain")]
 		public IActionResult CalculateLcm([FromQuery] string? x, [FromQuery] string? y)
 		{
+			Console.WriteLine(x, y)
 			if (string.IsNullOrEmpty(x) || string.IsNullOrEmpty(y))
 			{
 				return Content("NaN", "text/plain");
