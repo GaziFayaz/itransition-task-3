@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Numerics;
+using Microsoft.AspNetCore.Mvc;
 
 namespace task_3.Controllers
 {
@@ -16,7 +17,7 @@ namespace task_3.Controllers
 				return Content("NaN", "text/plain");
 			}
 
-			if (!ulong.TryParse(x, out ulong numX) || !ulong.TryParse(y, out ulong numY))
+			if (!BigInteger.TryParse(x, out BigInteger numX) || !BigInteger.TryParse(y, out BigInteger numY))
 			{
 				return Content("NaN", "text/plain");
 			}
@@ -27,21 +28,21 @@ namespace task_3.Controllers
 				return Content("NaN", "text/plain");
 			}
 
-			ulong lcm = CalculateLCM(numX, numY);
+			BigInteger lcm = CalculateLCM(numX, numY);
 			Console.WriteLine("LCM = {0}", lcm);
 			return Content(lcm.ToString(), "text/plain");
 		}
 
-		private ulong CalculateLCM(ulong a, ulong b)
+		private BigInteger CalculateLCM(BigInteger a, BigInteger b)
 		{
 			return (a * b) / CalculateGCD(a, b);
 		}
 
-		private ulong CalculateGCD(ulong a, ulong b)
+		private BigInteger CalculateGCD(BigInteger a, BigInteger b)
 		{
 			while (b != 0)
 			{
-				ulong temp = b;
+				BigInteger temp = b;
 				b = a % b;
 				a = temp;
 			}
