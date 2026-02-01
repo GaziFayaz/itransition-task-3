@@ -1,12 +1,11 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy csproj and restore
-COPY ["task 3.csproj", "./"]
-RUN dotnet restore "task 3.csproj"
-
-# Copy everything else and build
+# Copy everything
 COPY . .
+
+# Restore and publish
+RUN dotnet restore "task 3.csproj"
 RUN dotnet publish "task 3.csproj" -c Release -o /app/publish
 
 # Build runtime image
