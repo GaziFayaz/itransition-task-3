@@ -12,15 +12,11 @@ namespace task_3.Controllers
 		public IActionResult CalculateLcm([FromQuery] string? x, [FromQuery] string? y)
 		{
 
-			if (string.IsNullOrEmpty(x) || string.IsNullOrEmpty(y))
+			if (string.IsNullOrEmpty(x) || string.IsNullOrEmpty(y) || !BigInteger.TryParse(x, out BigInteger numX) || !BigInteger.TryParse(y, out BigInteger numY))
 			{
 				return Content("NaN", "text/plain");
 			}
 
-			if (!BigInteger.TryParse(x, out BigInteger numX) || !BigInteger.TryParse(y, out BigInteger numY))
-			{
-				return Content("NaN", "text/plain");
-			}
 			Console.WriteLine("x = {0}, y = {1}",  x, y);
 
 			if (numX <= 0 || numY <= 0)
@@ -28,17 +24,17 @@ namespace task_3.Controllers
 				return Content("NaN", "text/plain");
 			}
 
-			BigInteger lcm = CalculateLCM(numX, numY);
+			BigInteger lcm = CalculateLcm(numX, numY);
 			Console.WriteLine("LCM = {0}", lcm);
 			return Content(lcm.ToString(), "text/plain");
 		}
 
-		private BigInteger CalculateLCM(BigInteger a, BigInteger b)
+		private BigInteger CalculateLcm(BigInteger a, BigInteger b)
 		{
-			return (a * b) / CalculateGCD(a, b);
+			return (a * b) / CalculateGcd(a, b);
 		}
 
-		private BigInteger CalculateGCD(BigInteger a, BigInteger b)
+		private BigInteger CalculateGcd(BigInteger a, BigInteger b)
 		{
 			while (b != 0)
 			{
